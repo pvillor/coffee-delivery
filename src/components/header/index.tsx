@@ -9,16 +9,20 @@ import {
 export function Header() {
   return (
     <HeaderContainer>
-      <img src="coffee-delivery-logo.svg" alt="" />
+      <a href="/">
+        <img src="coffee-delivery-logo.svg" alt="" />
+      </a>
 
       <HeaderActions>
         <LocationButton>
           <MapPin size={22} />
           <span>Porto Alegre, SC</span>
         </LocationButton>
-        <CartButton>
-          <ShoppingCart size={22} />
-        </CartButton>
+        <a href="/checkout">
+          <CartButton>
+            <ShoppingCart size={22} />
+          </CartButton>
+        </a>
       </HeaderActions>
     </HeaderContainer>
   );
