@@ -87,4 +87,6 @@ export const SuccessOrderDetailsItem = styled.div`
   gap: 0.75rem;
 
   padding-right: 5.75rem;
+
+  color: ${props => props.theme['base-text']};
 `
