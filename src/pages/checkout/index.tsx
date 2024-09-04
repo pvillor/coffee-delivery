@@ -28,7 +28,7 @@ export function Checkout() {
     <CheckoutContainer>
       <main>
         <h2>Complete seu pedido</h2>
-        <ConsumerInfoContainer>
+        <ConsumerInfoContainer id="form">
           <ConsumerInfoAddress>
             <ConsumerInfoHeader>
               <MapPinLine size={22} />
@@ -106,7 +106,9 @@ export function Checkout() {
                 <span>R$ 33,20</span>
               </div>
             </OrderPriceSummary>
-            <ConfirmOrderButton>CONFIRMAR PEDIDO</ConfirmOrderButton>
+            <ConfirmOrderButton type="submit" form="form">
+              CONFIRMAR PEDIDO
+            </ConfirmOrderButton>
           </ConfirmOrder>
         </OrderSummary>
       </aside>

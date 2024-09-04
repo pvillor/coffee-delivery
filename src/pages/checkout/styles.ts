@@ -85,7 +85,7 @@ export const ConfirmOrderButton = styled.button`
     }
 `
 
-export const ConsumerInfoContainer = styled.div`
+export const ConsumerInfoContainer = styled.form`
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
