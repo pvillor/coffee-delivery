@@ -3,19 +3,78 @@ import {
   CheckoutContainer,
   ConfirmOrder,
   ConfirmOrderButton,
+  ConsumerInfoAddress,
+  ConsumerInfoAddressBody,
+  ConsumerInfoContainer,
+  ConsumerInfoHeader,
+  ConsumerInfoPayment,
+  ConsumerInfoPaymentBody,
+  ConsumerInfoPaymentBodyButton,
   OrderPriceSummary,
   OrderSummary,
 } from "./styles";
 import expressoTradicional from "../../assets/expresso.png";
+import {
+  Bank,
+  CreditCard,
+  CurrencyDollar,
+  MapPinLine,
+  Money,
+} from "phosphor-react";
+import { Input } from "./components/input";
 
 export function Checkout() {
   return (
     <CheckoutContainer>
       <main>
-        <div>
-          <h2>Complete seu pedido</h2>
-          <div></div>
-        </div>
+        <h2>Complete seu pedido</h2>
+        <ConsumerInfoContainer>
+          <ConsumerInfoAddress>
+            <ConsumerInfoHeader>
+              <MapPinLine size={22} />
+              <div>
+                <h3>Endereço de Entrega</h3>
+                <p>Informe o endereço onde deseja receber seu pedido</p>
+              </div>
+            </ConsumerInfoHeader>
+            <ConsumerInfoAddressBody>
+              <Input placeholder="CEP" populateColumns={3} />
+              <Input placeholder="Rua" populateColumns={8} />
+              <Input placeholder="Número" populateColumns={3} />
+              <Input
+                placeholder="Complemento"
+                populateColumns={5}
+                suffix="Opcional"
+              />
+              <Input placeholder="Bairro" populateColumns={3} />
+              <Input placeholder="Cidade" populateColumns={4} />
+              <Input placeholder="UF" populateColumns={1} />
+            </ConsumerInfoAddressBody>
+          </ConsumerInfoAddress>
+          <ConsumerInfoPayment>
+            <ConsumerInfoHeader>
+              <CurrencyDollar size={22} />
+              <div>
+                <h3>Pagamento</h3>
+                <p>
+                  O pagamento é feito na entrega. Escolha a forma que deseja
+                  pagar
+                </p>
+              </div>
+            </ConsumerInfoHeader>
+            <ConsumerInfoPaymentBody>
+              <ConsumerInfoPaymentBodyButton>
+                <CreditCard size={16} /> <span>CARTÃO DE CRÉDITO</span>
+              </ConsumerInfoPaymentBodyButton>
+              <ConsumerInfoPaymentBodyButton>
+                <Bank size={16} /> <span>CARTÃO DE DÉBITO</span>
+              </ConsumerInfoPaymentBodyButton>
+              <ConsumerInfoPaymentBodyButton>
+                <Money size={16} /> <span>DINHEIRO</span>
+              </ConsumerInfoPaymentBodyButton>
+            </ConsumerInfoPaymentBody>
+          </ConsumerInfoPayment>
+        </ConsumerInfoContainer>
       </main>
       <aside>
         <h2>Cafés selecionados</h2>
