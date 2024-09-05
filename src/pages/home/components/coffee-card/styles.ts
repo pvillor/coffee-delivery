@@ -39,6 +39,8 @@ export const CoffeeCardCategories = styled.div`
     font-size: 0.625rem;
     font-weight: bold;
 
+    text-transform: uppercase;
+
     padding: 0.25rem 0.5rem;
   }
 `

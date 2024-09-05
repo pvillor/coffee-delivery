@@ -8,8 +8,10 @@ import {
   CartCoffeeCardQuantity,
   CartCoffeeCardRemoveButton,
 } from "./styles";
+import { useCart } from "../../../../hooks/useCart";
 
 interface CartCoffeeCardProps {
+  id: string;
   imageUrl: string;
   name: string;
   quantity: number;
@@ -21,11 +23,27 @@ export function CartCoffeeCard({
   name,
   quantity,
   priceInCents,
+  id,
 }: CartCoffeeCardProps) {
+  const { incrementItemQuantity, decrementItemQuantity, removeItem } =
+    useCart();
+
   const formattedPrice = (priceInCents / 100).toLocaleString("pt-BR", {
     style: "currency",
     currency: "BRL",
   });
+
+  function handleItemIncrement(itemId: string) {
+    incrementItemQuantity(itemId);
+  }
+
+  function handleItemDecrement(itemId: string) {
+    decrementItemQuantity(itemId);
+  }
+
+  function handleItemRemove(itemId: string) {
+    removeItem(itemId);
+  }
 
   return (
     <CartCoffeeCardContainer>
@@ -35,12 +53,12 @@ export function CartCoffeeCard({
           <p>{name}</p>
           <CartCoffeeCardActions>
             <CartCoffeeCardQuantity>
-              <Minus />
+              <Minus onClick={() => handleItemDecrement(id)} />
               <span>{quantity}</span>
-              <Plus />
+              <Plus onClick={() => handleItemIncrement(id)} />
             </CartCoffeeCardQuantity>
 
-            <CartCoffeeCardRemoveButton>
+            <CartCoffeeCardRemoveButton onClick={() => handleItemRemove(id)}>
               <Trash size={16} />
               <span>REMOVER</span>
             </CartCoffeeCardRemoveButton>

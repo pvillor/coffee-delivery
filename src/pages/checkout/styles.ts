@@ -80,8 +80,13 @@ export const ConfirmOrderButton = styled.button`
     border-radius: 6px;
     padding: 0.75rem 0;
 
-    &:hover {
+    &:not(:disabled):hover {
       background-color: ${props => props.theme['yellow-dark']};
+    }
+
+    &:disabled {
+      opacity: 0.7;
+      cursor: no-drop;
     }
 `
 
@@ -122,6 +127,11 @@ export const ConsumerInfoPayment = styled(ConsumerInfo)`
   svg {
     color: ${props => props.theme['purple']}
   }
+
+  & > span {
+    color: rgb(239 68 68);
+    font-size: 1rem;
+  }
 `
 
 export const ConsumerInfoHeader = styled.div`
@@ -144,25 +154,4 @@ export const ConsumerInfoAddressBody = styled.div`
 export const ConsumerInfoPaymentBody = styled.div`
   display: flex;
   justify-content: space-between;
-`
-
-interface ConsumerInfoPaymentBodyButtonProps {
-  selected?: boolean
-}
-
-export const ConsumerInfoPaymentBodyButton = styled.button<ConsumerInfoPaymentBodyButtonProps>`
-  padding: 1rem;
-
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-
-  color: ${props => props.theme['base-text']};
-  background-color: ${props => props.selected ? props.theme['purple-light'] : props.theme['base-button']};
-  border: ${props => props.selected && '1px solid ' + props.theme['purple']};
-
-  &:hover {
-    color: ${props => !props.selected && props.theme['base-subtitle']};
-    background-color: ${props => !props.selected && props.theme['base-hover']};
-  }
 `

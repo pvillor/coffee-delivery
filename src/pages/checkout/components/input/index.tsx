@@ -1,16 +1,39 @@
-import { InputContainer } from "./styles";
+import { FieldError, UseFormRegister } from "react-hook-form";
+import { Container, InputContainer } from "./styles";
+import { FormInputs } from "../..";
 
 interface InputProps {
+  id:
+    | "number"
+    | "cep"
+    | "street"
+    | "fullAddress"
+    | "neighborhood"
+    | "city"
+    | "state"
+    | "paymentMethod";
   suffix?: string;
   placeholder?: string;
-  populateColumns: number;
+  columns: number;
+  register: UseFormRegister<FormInputs>;
+  error?: FieldError;
 }
 
-export function Input({ suffix, placeholder, populateColumns }: InputProps) {
+export function Input({
+  id,
+  suffix,
+  placeholder,
+  columns,
+  register,
+  error,
+}: InputProps) {
   return (
-    <InputContainer populateColumns={populateColumns}>
-      <input type="text" placeholder={placeholder} />
-      {!!suffix && <span>{suffix}</span>}
-    </InputContainer>
+    <Container columns={columns}>
+      <InputContainer>
+        <input placeholder={placeholder} {...register(id)} />
+        {!!suffix && <span>{suffix}</span>}
+      </InputContainer>
+      {error && <span>{error.message}</span>}
+    </Container>
   );
 }

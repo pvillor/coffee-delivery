@@ -10,8 +10,11 @@ import {
   CoffeeCardPrice,
   CoffeeCardQuantity,
 } from "./styles";
+import { useState } from "react";
+import { useCart } from "../../../../hooks/useCart";
 
 interface CoffeeCardProps {
+  id: string;
   imageUrl: string;
   categories: string[];
   name: string;
@@ -20,12 +23,17 @@ interface CoffeeCardProps {
 }
 
 export function CoffeeCard({
+  id,
   imageUrl,
   categories,
   name,
   description,
   priceInCents,
 }: CoffeeCardProps) {
+  const [quantity, setQuantity] = useState(1);
+
+  const { addItem } = useCart();
+
   const formattedPrice = (priceInCents / 100).toLocaleString("pt-BR", {
     style: "currency",
     currency: "BRL",
@@ -36,6 +44,20 @@ export function CoffeeCard({
   const [currencySymbol, value] = formattedPrice.split(
     whiteSpaceBetweenSymbolAndValue
   );
+
+  function handleDecreaseQuantity() {
+    if (quantity > 1) {
+      setQuantity((state) => state - 1);
+    }
+  }
+
+  function handleIncreaseQuantity() {
+    setQuantity((state) => state + 1);
+  }
+
+  function handleAddCoffeesInCart() {
+    addItem({ id: id, quantity });
+  }
 
   return (
     <CoffeeCardContainer>
@@ -59,12 +81,12 @@ export function CoffeeCard({
         </CoffeeCardPrice>
         <CoffeeCardActions>
           <CoffeeCardQuantity>
-            <Minus />
-            <span>1</span>
-            <Plus />
+            <Minus onClick={handleDecreaseQuantity} />
+            <span>{quantity}</span>
+            <Plus onClick={handleIncreaseQuantity} />
           </CoffeeCardQuantity>
 
-          <CoffeeCardCartButton>
+          <CoffeeCardCartButton onClick={handleAddCoffeesInCart}>
             <ShoppingCart />
           </CoffeeCardCartButton>
         </CoffeeCardActions>

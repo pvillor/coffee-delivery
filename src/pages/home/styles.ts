@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import homeBackground from '../../assets/home-background.png'
 
 export const HomeContainer = styled.div`
   main {
@@ -11,7 +10,7 @@ export const HomeContainer = styled.div`
     
     line-height: 130%;
 
-    background-image: url(${homeBackground});
+    background-image: url('home-background.png');
   }
 `
 

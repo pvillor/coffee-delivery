@@ -1,11 +1,21 @@
 import styled from "styled-components";
 
-interface InputContainerProps {
-  populateColumns: number
+interface ContainerProps {
+  columns: number
 }
 
-export const InputContainer = styled.div<InputContainerProps>`
-  grid-column: span ${props => props.populateColumns} / span ${props => props.populateColumns};
+export const Container = styled.div<ContainerProps>`
+  display: flex;
+  flex-direction: column;
+  grid-column: span ${props => props.columns} / span ${props => props.columns};
+
+  & > span {
+    color: rgb(239 68 68);
+    font-size: 12px;
+  }
+`
+
+export const InputContainer = styled.div`
   background-color: ${props => props.theme['base-input']};
   border: 1px solid ${props => props.theme['base-button']};
   border-radius: 4px;
