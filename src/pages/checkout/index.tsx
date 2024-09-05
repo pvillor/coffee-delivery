@@ -104,13 +104,13 @@ export function Checkout() {
           onSubmit={handleSubmit(handleOrderCheckout)}
         >
           <ConsumerInfoAddress>
-            <form>
+            <ConsumerInfoHeader>
               <MapPinLine size={22} />
               <div>
                 <h3>Endereço de Entrega</h3>
                 <p>Informe o endereço onde deseja receber seu pedido</p>
               </div>
-            </form>
+            </ConsumerInfoHeader>
             <ConsumerInfoAddressBody>
               <Input
                 id="cep"
